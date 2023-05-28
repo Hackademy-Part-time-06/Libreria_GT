@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
 
@@ -20,17 +21,16 @@ class BookController extends Controller
         return view('book.create');
     }
 
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
 
+        $path_image='';
 
-        //mi valida i dati, se sono tutto ok continua
-        $request->validate([
-            "title" => "required|string",
-            "pages" => "required|numeric",
-            "author" => "required",
-            "year" => "required",
-        ]);
+        if($request->hasFile('image') && $request -> file('image')->isValid()) { //se c'è un immagine, e questa è valida
+          $file_name = $request->file('image') -> getClientOriginalName(); //dammi il nome originale inserito da utente
+          $path_image = $request->file('image') -> storeAs('public/images/cover', $file_name); //crea la cartella se non esiste in modo automatico
+                }
+        
 
 
         //metodo php per salvare i dati
@@ -57,7 +57,9 @@ class BookController extends Controller
             'author' => $request->author,
             'pages' => $request->pages,
             'year' => $request->year,
+            'image' => $path_image,
         ]);
+
 
 
         return redirect()->route('book.index')->with('success','libro inserito');

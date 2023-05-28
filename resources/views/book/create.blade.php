@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    @vite(['resources/css/app.css', 'resources/js/app.jss'])
-
-    <title>Laravel</title>
-</head>
-
-<body>
-
+<x-main>
     <h1 class="m-4">Inserisci il libro che stai cercando </h1>
 
     <div class="container m-4">
-        <form action="{{ Route('book.store') }}" method="POST">
+        <form action="{{ Route('book.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
             <div class="m-4">
@@ -31,15 +19,14 @@
             </div>
             <div class="m-4">
                 <label class="form-label"></label>
-                <input class="form-control" type="text" name="author" value="{{ old('author') }}"
-                    placeholder="inserisci l'autore">
+                <input class="form-control" type="text" name="year" value="{{ old('year') }}"
+                    placeholder="inserisci l'anno">
             </div>
             <div class="m-4">
                 <label class="form-label"></label>
-                <input class="form-control" type="text" name="year" value="{{ old('year') }}"
+                <input class="form-control" type="text" name="author" value="{{ old('author') }}"
                     placeholder="inserisci l'autore">
             </div>
-            <button type="submit" class="btn btn-primary">Cerca</button>
 
             <!-- in caso di errore-->
             @if ($errors->any())
@@ -51,8 +38,16 @@
                     </ul>
                 </div>
             @endif
+
+            <div class="mb-3">
+                <label for="pages">Immagine del Libro</label>
+                <input class="form-control" id="image" name="image" type="file">
+                {{-- non mettere l'old value perchè senno ti entrano nel pc --}}
+            </div>
+
+            <div class="d-grid gap-3">
+                <button class="btn btn-primary btn-lg p-2" type="submit">Salva</button>
+            </div>
         </form>
         <div>
-</body>
-
-</html>
+</x-main>

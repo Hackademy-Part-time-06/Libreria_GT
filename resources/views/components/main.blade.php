@@ -5,28 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    @vite(['resources/css/app.css', 'resources/js/app.jss'])
+
     <title>Libreria da Aterg</title>
 </head>
-
 <body>
 
+{{$slot}}
 
-    @if (session('success'))
-        Salvato correttamente
-    @endif
-
-    <h1>Libri disponibili</h1>
-    <ul>
-        @foreach ($books as $book)
-            <li>
-                <a href="{{route('book.show',['book' => $book['id']])}}">
-
-
-                {{ $book['title'] }} - {{ $book['author'] }} - {{ $book['year'] }} - {{ $book['pages'] }}
-            
-            </li>
-        @endforeach
-    </ul>
 </body>
-
 </html>
