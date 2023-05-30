@@ -8,7 +8,8 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="{{Route ('book.index')}}">Home</a>
-          <a class="nav-link" href="{{Route ('book.create')}}">Aggiungi</a>
+          <a class="nav-link" href="{{Route ('book.create')}}">Aggiungi Libri</a>
+          <a class="nav-link" href="{{Route ('category.create')}}">Aggiungi Categorie</a>
         </div>
       </div>
     </div>
