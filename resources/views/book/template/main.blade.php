@@ -9,7 +9,10 @@
 
     <title>Libreria da Aterg</title>
 </head>
-<body>
+<body class="background-body img-fluid" >
+
+    <x-navbar/> 
+  
 
 {{$slot}}
 

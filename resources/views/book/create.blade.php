@@ -1,8 +1,8 @@
 
 <x-main>
-    <h1 class="m-4">Inserisci il libro che stai cercando </h1>
+    <h1 class="m-4 text-white">Inserisci il libro</h1>
 
-    <div class="container m-4">
+    <div class="container m-4 bg-white opacity-100 rounded">
         <form action="{{ Route('book.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
@@ -46,7 +46,7 @@
             </div>
 
             <div class="d-grid gap-3">
-                <button class="btn btn-primary btn-lg p-2" type="submit">Salva</button>
+                <button class="btn btn-lg m-5 text-white" style="background-color: rgb(136, 10, 10)" type="submit">Salva</button>
             </div>
         </form>
         <div>

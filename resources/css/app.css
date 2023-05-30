@@ -1,1 +1,13 @@
 @import 'bootstrap';
+
+.background-body {
+
+    background-image: url('https://images.pexels.com/photos/2767814/pexels-photo-2767814.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.colornav {
+    opacity: 0.9;
+}

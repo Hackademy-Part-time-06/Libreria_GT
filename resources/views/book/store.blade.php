@@ -10,13 +10,15 @@
 
 <body>
 
+    <div class="col-6 opacity-75">
     <h1>Libri disponibili</h1>
-    <ul>
+    <ul class="list-group list-group-flush">
     @foreach ($books as $book)
 
-    <li>{{$book['title']}} - {{$book['author']}} - {{$book['year']}} - {{$book['pages']}}</li>
+    <li class="list-group-item">{{$book['title']}} - {{$book['author']}} - {{$book['year']}} - {{$book['pages']}}</li>
 
     @endforeach
     </ul>
+    </div>
 </body>
 </html>
