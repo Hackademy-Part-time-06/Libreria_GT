@@ -8,9 +8,16 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth')->only('book.create, category.create, book.store, category.store');
+    }
+
     public function index()
     {
-        $books = Book::all();
+        $books = Book::all();  //ottiene tutti i record presenti nella tabella books
 
         return view('book.index', ['books' => $books]);
     }
@@ -75,5 +82,9 @@ class BookController extends Controller
      }
 
         return view('book.show', ['book' => $book]);
+    }
+
+    public function edit(Book $book) {
+        return view('book.edit', ['book'=> $book]);
     }
 }

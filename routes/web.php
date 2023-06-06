@@ -20,8 +20,13 @@ Route::get('/home', [BookController::class, 'index'])-> name('book.index');
 Route::get('/libri/crea', [BookController::class, 'create'])-> name('book.create');
 Route::post('/libri/salva', [BookController::class, 'store'])-> name('book.store');
 Route::get('/libri/{book}/dettagli', [BookController::class, 'show'])-> name('book.show');
+//rotte nuove
+Route::get('/libri/{book}/modifica', [BookController::class, 'edit'])-> name('book.edit');
+Route::get('/libri/{book}/modifica', [BookController::class, 'update'])-> name('book.update');
+
 
 Route::get('/categoria', [CategoryController::class, 'index'])-> name('category.index');
 Route::get('/categoria/crea', [CategoryController::class, 'create'])-> name('category.create');
 Route::post('/categoria/salva', [CategoryController::class, 'store'])-> name('category.store');
 Route::get('/categoria/{category}/dettagli', [CategoryController::class, 'show'])-> name('category.show');
+
