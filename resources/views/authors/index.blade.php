@@ -7,17 +7,17 @@
 
 
 <div class="container m-5">
-    <h1 class="text-light">Libri disponibili</h1>
+    <h1 class="text-light">Autori disponibili</h1>
 
     <div class="col-6 opacity-75">
     <ul class="list-group list-group-flush">
         
-        @foreach ($books as $book)
+        @foreach ($authors as $author)
             <li class="list-group-item">
                 
                 <a class="text-decoration-none text-black" href="{{route('book.show',['book' => $book['id']])}}">
 
-                {{ $book['title'] }} - {{ $book['author'] }} - {{ $book['year'] }} - {{ $book['pages'] }}
+                {{ $author['name'] }} - {{ $author['surname'] }} - {{ $author['birthday']}}
 
                 <div class="d-grid d-md-flex justify-content-md-end">
                     <a href="{{route('book.show',['book' => $book['id']])}}"

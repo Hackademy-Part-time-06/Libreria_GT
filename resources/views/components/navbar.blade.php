@@ -9,13 +9,15 @@
         <div class="navbar-nav">
           <a class="nav-link @if (Route::currentRouteName() == 'book.index') active @endif" aria-current="page" href="{{Route ('book.index')}}">Home</a>
           <a class="nav-link @if (Route::currentRouteName() == 'category.index') active @endif" aria-current="page" href="{{Route ('category.index')}}">Lista Categorie</a>
+          <a class="nav-link @if (Route::currentRouteName() == 'authors.index') active @endif" aria-current="page" href="{{Route ('authors.index')}}">Lista Autori</a>
+
 
 
           @auth           {{-- qui stiamo aprendo un auth, quindi tutto cio che c'è qui dentro lo vede solo l'utente registrato --}}
 
           <a class="nav-link @if (Route::currentRouteName() == 'book.create') active @endif" href="{{Route ('book.create')}}">Aggiungi Libri</a>
           <a class="nav-link @if (Route::currentRouteName() == 'category.create') active @endif" href="{{Route ('category.create')}}">Aggiungi Categorie</a>
-         
+          <a class="nav-link @if (Route::currentRouteName() == 'authors.create') active @endif" href="{{Route ('authors.create')}}">Aggiungi Autore</a>
           <li>
               <p class="text-white align-baseline m-2">Ciao, {{Auth::user()->email}}</p>
           </li>

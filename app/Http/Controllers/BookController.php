@@ -12,7 +12,7 @@ class BookController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->only('book.create, category.create, book.store, category.store');
+        $this->middleware('auth')->only('create','edit');
     }
 
     public function index()
@@ -87,4 +87,32 @@ class BookController extends Controller
     public function edit(Book $book) {
         return view('book.edit', ['book'=> $book]);
     }
+
+    public function update(BookRequest $request, Book $book) {
+        
+        $path_image = $book->image; //se c'è mi prendi quella vecchia
+
+        if ($request->HasFile('image') && $request->file('image')->isValid()) {
+            $path_name = $request->file('image') -> getClientOriginalName();
+            $path_image = $request->file('image') -> storeAs('public\/image', $path_name);
+        }
+
+        $book->update([ //è come il create solo che appunto dobbiamo modificare i campi
+            'title' => $request->title,
+            'author' => $request->author,
+            'pages' => $request->pages,
+            'year' => $request->year,
+            'image' => $path_image
+        ]);
+
+        return redirect()->route('book.index')->with('success', 'Modifica avvenuta con successo!');
+    }
+
+    public function destroy(Book $book)
+    { 
+        $book -> delete();
+        return redirect()->route('book.index')->with('success', 'Cancellazione avvenuta con successo!');
+
+    }
+
 }
