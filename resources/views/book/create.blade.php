@@ -22,10 +22,19 @@
                 <input class="form-control" type="text" name="year" value="{{ old('year') }}"
                     placeholder="inserisci l'anno">
             </div>
-            <div class="m-4">
-                <label class="form-label"></label>
-                <input class="form-control" type="text" name="author" value="{{ old('author') }}"
-                    placeholder="inserisci l'autore">
+
+            <div class="form-floating mb-3">
+                <select class="form-control" id="author_id" name="author_id">
+                    @foreach ($authors as $author)
+                    <option value="{{$author->id}}">{{$author->name}} {{$author->surname}}</option>
+                    @endforeach
+                </select>
+                <label for="author_id">Nome Autore</label>
+                @error('author_id')
+                <span class="text-danger">
+                    {{$message}}
+                </span>
+                @enderror
             </div>
 
             <!-- in caso di errore-->
