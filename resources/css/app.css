@@ -11,3 +11,7 @@
 .colornav {
     opacity: 0.9;
 }
+
+.border-radius {
+    border-radius: 25px
+}

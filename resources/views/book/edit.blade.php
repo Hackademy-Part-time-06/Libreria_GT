@@ -1,7 +1,7 @@
 <x-main>
     <h1 class="m-4 text-white text-center">Aggiorna il libro</h1>
 
-    <div class="container m-auto bg-white opacity-100 rounded col-6 ">
+    <div class="container m-auto bg-white opacity-100 rounded col-6">
         <form action="{{ Route('book.update', ['book' => $book['id']]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')

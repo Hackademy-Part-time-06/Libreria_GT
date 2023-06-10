@@ -1,8 +1,8 @@
 
 <x-main>
-    <h1 class="m-4 text-white">Inserisci il libro</h1>
+    <h1 class="m-4 text-center text-white">Inserisci libro</h1>
 
-    <div class="container m-4 bg-white opacity-100 rounded">
+    <div class="container m-auto bg-white opacity-100 rounded col-6">
         <form action="{{ Route('book.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')

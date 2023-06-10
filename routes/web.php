@@ -28,10 +28,11 @@ Route::delete('/libri/{book}/elimina', [BookController::class, 'destroy'])-> nam
 
 
 
-Route::get('/categoria', [CategoryController::class, 'index'])-> name('category.index');
+/* Route::get('/categoria', [CategoryController::class, 'index'])-> name('category.index');
 Route::get('/categoria/crea', [CategoryController::class, 'create'])-> name('category.create');
 Route::post('/categoria/salva', [CategoryController::class, 'store'])-> name('category.store');
-Route::get('/categoria/{category}/dettagli', [CategoryController::class, 'show'])-> name('category.show');
+Route::get('/categoria/{category}/dettagli', [CategoryController::class, 'show'])-> name('category.show'); */
 
 
 Route::resource('authors', AuthorController::class);
+Route::resource('categories', CategoryController::class);
