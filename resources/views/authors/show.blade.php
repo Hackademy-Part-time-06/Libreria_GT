@@ -1,11 +1,15 @@
-<section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6">
+<x-main>
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
 
-                    <p>Nome Autore: {{$author->name}} </p>
-                    <p>Cognome Autore: {{$author->surname}} </p>
-                    <p>Età Autore: {{$author->birthday}} </p>
+                <div class="col-md-6 opacity-75 bg-light rounded m-auto">
+
+                    <p class="display-5 fw-bolder text-black">Nome Autore: {{$author->name}} </p>
+                    <p class="display-5 fw-bolder text-black">Cognome Autore: {{$author->surname}} </p>
+
+                    {{-- mi prende la data di nascita e mi scrive esattamente la sua età --}}
+                    <p class="display-5 fw-bolder text-black">Età Autore: {{$author->birthday}} </p>
 
 
 
@@ -40,6 +44,7 @@
                 @empty
 
                 @endforelse
+
             </div>
         </div>
     </section>
