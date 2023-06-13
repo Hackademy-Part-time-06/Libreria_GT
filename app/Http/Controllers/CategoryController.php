@@ -18,9 +18,9 @@ class CategoryController extends Controller
     
     public function index()
     {
-        $categories = Category::all();
+        $category = Category::all();
 
-        return view('categories.index', ['categories' => $categories]);
+        return view('categories.index', ['categories' => $category]);
     }
 
     public function create()
@@ -49,9 +49,10 @@ class CategoryController extends Controller
         return view('categories.edit', compact('category'));
     }
 
-    public function update(CategoryRequest $request, Category $categories)
+    public function update(CategoryRequest $request, Category $category)
     {
-        Category::create([
+
+        $category->update([
             'name' => $request->input('name'),
         ]);
 

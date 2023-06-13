@@ -24,6 +24,7 @@ class AuthorRequest extends FormRequest
         return [
             'name' => 'required',
             'surname' => 'required',
+            'birthday' => 'required',
         ];
     }
 }

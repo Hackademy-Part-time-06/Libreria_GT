@@ -6,6 +6,8 @@ use App\Http\Requests\BookRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -18,16 +20,32 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Book::all();  //ottiene tutti i record presenti nella tabella books
+        //$books = Book::all();  //ottiene tutti i record presenti nella tabella books
+
+        //ma non li voglio tutti, voglio solo quelli dell'utente registrato
+        //where(1, '>', 2)
+        //1) Utente deve essere autenticato
+        //2) Ottengo id utente autenticati
+        //3) Filtro i dati di user_id
+        if (Auth::user()) {
+            //Filtra i libri
+            $books = Book::where('user_id', Auth::user()->id)->get();
+        } else {
+            $books = Book::all();
+        }
 
         return view('book.index', ['books' => $books]);
     }
 
     public function create()
     {
-
+        
         $authors = Author::all();
-        return view('book.create', compact('authors'));
+        
+        $categories = Category::all();
+        return view('book.create', compact('authors', 'categories'));
+
+       
     }
 
     public function store(BookRequest $request)
@@ -64,11 +82,13 @@ class BookController extends Controller
         Book::create([
             'title' => $request->title,
             'author_id' => $request->author_id,
+            'user_id' => Auth::user()->id, // Inserisco l'id dell'utente che ha creato la risorsa
             'pages' => $request->pages,
             'year' => $request->year,
             'image' => $path_image,
         ]);
 
+        
 
         return redirect()->route('book.index')->with('success','libro inserito');
     }
@@ -87,9 +107,16 @@ class BookController extends Controller
 
     public function edit(Book $book) {
 
-        $authors = Author::all();
+        //se la persona che vuole modificare non si è registrata, mostro il 401
+        if (!(Auth::user()->id == $book->user_id)) {
+            abort(401);
+        }
 
-        return view('book.edit', ['book'=> $book] , ['authors' => $authors]);
+
+        $authors = Author::all();
+        $categories = Category::all();
+        return view('book.edit', ['book' => $book, 'authors' => $authors, 'categories' => $categories]);
+
     }
 
     public function update(BookRequest $request, Book $book) {
@@ -103,7 +130,7 @@ class BookController extends Controller
 
         $book->update([ //è come il create solo che appunto dobbiamo modificare i campi
             'title' => $request->title,
-            'author' => $request->author,
+            'author_id' => $request->author_id,
             'pages' => $request->pages,
             'year' => $request->year,
             'image' => $path_image

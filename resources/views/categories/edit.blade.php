@@ -7,7 +7,7 @@
             @method('PUT')
             <div class="m-4">
                 <label class="form-label"></label>
-                <input class="form-control" type="text" name="title" value="{{ $category->title }}"
+                <input class="form-control" type="text" name="name" value="{{ $category->name}}"
                     placeholder="inserisci il titolo">
                 <div id="emailHelp" class="form-text"></div>
             </div>

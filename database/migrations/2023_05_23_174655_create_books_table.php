@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title', 150);
             $table->integer('pages');
-            $table->string('author_id');
             $table->timestamps();
         });
     }

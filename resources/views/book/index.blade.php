@@ -17,7 +17,7 @@
 
                 <a class="text-decoration-none text-black" href="{{route('book.show',['book' => $book['id']])}}">
 
-                {{ $book['title'] }} - {{ $book['author'] }} - {{ $book['year'] }} - {{ $book['pages'] }}
+                {{ $book['title'] }} - {{ $book->author->name}}  {{ $book->author->surname}}- {{ $book['year'] }} - {{ $book['pages'] }}
 
                 <div class="d-grid d-md-flex justify-content-md-end">
                     <a href="{{route('book.show',['book' => $book['id']])}}"

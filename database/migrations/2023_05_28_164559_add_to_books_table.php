@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('image')->after('author')->nullable; //nullable vuol dire non obbligatoria
+            $table->string('image')->nullable; //nullable vuol dire non obbligatoria
         });
     }
 

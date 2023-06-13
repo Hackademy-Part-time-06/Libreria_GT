@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    @vite(['resources/css/app.css','resources/js/app.jss'])
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
     <title>Libreria da Aterg</title>
+    
 </head>
 <body class="background-body img-fluid" >
-
     <x-navbar/> 
   
 

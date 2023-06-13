@@ -7,18 +7,18 @@
             @method('POST')
             <div class="m-4">
                 <label class="form-label"></label>
-                <input class="form-control" type="text" name="name" value="{{ old('name')}}"
+                <input class="form-control" type="text" name="name" value="{{ $author->name }}"
                     placeholder="inserisci l'autore">
                 <div id="emailHelp" class="form-text"></div>
             </div>
             <div class="m-4">
                 <label class="form-label"></label>
-                <input class="form-control" type="text" name="surname" value="{{ old('surname') }}"
+                <input class="form-control" type="text" name="surname" value="{{ $author->surname }}"
                     placeholder="inserisci il cognome">
             </div>
             <div class="m-4">
                 <label class="form-label"></label>
-                <input class="form-control" type="date" name="birthday" value="{{ old('birthday') }}"
+                <input class="form-control" type="date" name="birthday" value="{{ $author->birthday }}"
                     placeholder="inserisci la data di nascita">
             </div>
 

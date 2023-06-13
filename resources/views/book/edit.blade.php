@@ -28,12 +28,35 @@
                     @endforeach
                 </select>
                 <label for="author_id">Nome Autore</label>
-                @error('author_id')
-                <span class="text-danger">
-                    {{$message}}
-                </span>
-                @enderror
-            </div>>
+            </div>
+
+
+            <div class="form-floating mb-3">
+                <select class="form-control" id="author_id" name="author_id">
+   @foreach ($authors as $author)
+   <option @if($book->author_id == $author->id) selected @endif 
+       value="{{$author->id}}">{{$author->name}} {{$author->surname}}</option>
+   @endforeach
+</select>
+<label for="author_id">Nome Autore</label>
+</div>
+<div class="form-floating mb-3">
+
+{{-- inserisco la categoria multipla con il checkbox --}}
+@foreach ($categories as $category)
+<div class="form-check">
+   <input class="form-check-input" 
+   @checked($book->categories->contains($category->id)) {{-- qui sto dicendo SE il metodo di book - chiamato category - contiene l'id, rimandami vero o falso --}}
+   type="checkbox"
+   name="categories[]" {{-- dentro il name va messo [] array vuoto perchè sennò mi stampa solo l'ultima selezionata, a cascata --}} 
+   value="{{ $category->id }}" id="categories-{{ $category->id }}">
+   <label class="form-check-label" for="categories-{{ $category->id }}">
+       {{ $category->name }}
+   </label>
+</div>
+@endforeach
+
+
             <div class="mb-3">
                 <label for="pages">Inserisci immagine di copertina</label>
                 <input class="form-control" id="image" name="image" type="file">
