@@ -79,7 +79,7 @@ class BookController extends Controller
 
         //metodo nuovo ma applicato sulla richiesta dell'utente
 
-        Book::create([
+        $data = Book::create([
             'title' => $request->title,
             'author_id' => $request->author_id,
             'user_id' => Auth::user()->id, // Inserisco l'id dell'utente che ha creato la risorsa
@@ -89,6 +89,7 @@ class BookController extends Controller
         ]);
 
         
+        $data->categories()->attach($request->categories);  
 
         return redirect()->route('book.index')->with('success','libro inserito');
     }
@@ -115,6 +116,8 @@ class BookController extends Controller
 
         $authors = Author::all();
         $categories = Category::all();
+
+
         return view('book.edit', ['book' => $book, 'authors' => $authors, 'categories' => $categories]);
 
     }
@@ -136,6 +139,12 @@ class BookController extends Controller
             'image' => $path_image
         ]);
 
+        //$book->categories()->detach(); //stacco sennò si aggiungono 
+        //$book->categories()->attach($request->categories); // e riattacco
+        $book->categories()->sync($request->categories); //Metodo 2 in 1
+        //categories è il mio metodo che ho creato nel model
+
+
         return redirect()->route('book.index')->with('success', 'Modifica avvenuta con successo!');
     }
 
@@ -144,6 +153,15 @@ class BookController extends Controller
         $book -> delete();
         return redirect()->route('book.index')->with('success', 'Cancellazione avvenuta con successo!');
 
+    }
+
+    public function search(Request $request) 
+    {
+        
+       $bookfiltrati = Book::where('title', 'like' , '%' . $request->search . '%' )->get();
+       //vuol dire di prendermi un titolo che ha all'interno la search, ma non per forza tutta (tipo, divina commedia, se scrivo commedia, me lo da)
+
+        return view('book.index', ['books' => $bookfiltrati]);
     }
 
 }

@@ -2,15 +2,24 @@
 
 
     @if (session('success'))
-        Salvato correttamente
+        {{session('success')}}
     @endif
 
 
 <div class="container m-5">
     <h1 class="text-light text-center">Libri disponibili</h1>
 
-    <div class="col-6 m-auto bg-white">
-    <ul class="list-group list-group-flush border-radius">
+    <div class="m-auto mb-3 rounded col-6">
+        <form class="d-flex" role="search" action="{{route('book.search')}}" method="POST">
+            @method('POST')
+            @csrf
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn text-white" style="background-color: rgb(136, 10, 10)" type="submit">Cerca</button>
+          </form>
+    </div>
+
+    <div class="col-6 m-auto bg-white rounded">
+    <ul class="list-group list-group-flush rounded">
         
         @foreach ($books as $book)
             <li class="list-group-item  list-group-item-action">

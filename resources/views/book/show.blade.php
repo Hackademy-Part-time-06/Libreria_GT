@@ -9,8 +9,9 @@
                 </div>
                 <div class="col-md-6 opacity-75 bg-light rounded">
                     <h1 class="display-5 fw-bolder text-black">{{$book->title}}</h1>
-                    <p class="text-black">Autore: {{$book->author}} </p>
+                    <p class="text-black">Autore: {{$book->author->name}} {{$book->author->surname}} </p>
                     <p class="text-black">Numero Pagine: {{$book->pages}} </p>
+                    <p class="text-black">Categoria: {{$book->category}} </p>
                 </div>
             </div>
         </div>

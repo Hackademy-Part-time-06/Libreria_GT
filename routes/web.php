@@ -26,6 +26,8 @@ Route::get('/libri/{book}/modifica', [BookController::class, 'edit'])-> name('bo
 Route::put('/libri/{book}/verifica', [BookController::class, 'update'])-> name('book.update');
 Route::delete('/libri/{book}/elimina', [BookController::class, 'destroy'])-> name('book.destroy');
 
+Route::post('/libri/search', [BookController::class, 'search'])-> name('book.search');
+
 
 
 /* Route::get('/categoria', [CategoryController::class, 'index'])-> name('category.index');

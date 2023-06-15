@@ -10,8 +10,8 @@
     <div class="container m-5">
         <h1 class="text-light text-center">Autori disponibili</h1>
     
-        <div class="col-6 m-auto bg-white">
-        <ul class="list-group list-group-flush border-radius">
+        <div class="col-6 m-auto bg-white rounded">
+        <ul class="list-group list-group-flush rounded">
         
         @foreach ($authors as $author)
             <li class="list-group-item">
